@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+
+<title>Descubra seu ODU</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:40px;
+}
+
+.container{
+background:#1f1f1f;
+padding:30px;
+border-radius:10px;
+max-width:500px;
+margin:auto;
+}
+
+input{
+padding:10px;
+font-size:16px;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+margin-top:15px;
+background:#d4af37;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.resultado{
+margin-top:20px;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Descubra seu ODU</h1>
+
+<p>Digite sua data de nascimento</p>
+
+<input type="date" id="data">
+
+<br>
+
+<button onclick="calcular()">Descobrir</button>
+
+<div class="resultado" id="resultado"></div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let data = document.getElementById("data").value;
+
+if(!data){
+alert("Digite sua data de nascimento");
+return;
+}
+
+let numeros = data.replace(/-/g,"");
+
+let soma = 0;
+
+for(let i=0;i<numeros.length;i++){
+
+soma += parseInt(numeros[i]);
+
+}
+
+while(soma > 16){
+
+soma = soma.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b));
+
+}
+
+let odus = {
+
+1:"Mensagem do ODU 1",
+2:"Mensagem do ODU 2",
+3:"Mensagem do ODU 3",
+4:"Mensagem do ODU 4",
+5:"Mensagem do ODU 5",
+6:"Mensagem do ODU 6",
+7:"Mensagem do ODU 7",
+8:"Mensagem do ODU 8",
+9:"Mensagem do ODU 9",
+10:"Mensagem do ODU 10",
+11:"Mensagem do ODU 11",
+12:"Mensagem do ODU 12",
+13:"Mensagem do ODU 13",
+14:"Mensagem do ODU 14",
+15:"Mensagem do ODU 15",
+16:"Mensagem do ODU 16"
+
+};
+
+document.getElementById("resultado").innerHTML =
+
+"<b>Seu ODU é: "+soma+"</b><br><br>"+odus[soma];
+
+}
+
+</script>
+
+</body>
+</html>
