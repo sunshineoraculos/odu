@@ -7,43 +7,143 @@
 <title>Descubra seu ODU</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
 
 body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
-padding:40px;
+  margin:0;
+  background:linear-gradient(180deg,#0f1720 0%, #151f2d 100%);
+  color:#f8f5ee;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align:center;
+  padding:24px 16px;
 }
 
 .container{
-background:#1f1f1f;
-padding:30px;
-border-radius:10px;
-max-width:500px;
-margin:auto;
+  background:rgba(19, 27, 39, 0.96);
+  padding:24px 18px;
+  border-radius:18px;
+  max-width:820px;
+  margin:0 auto;
+  border:1px solid rgba(212,175,55,0.25);
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+h1{
+  margin-top:0;
+  font-size:clamp(28px, 5vw, 42px);
+  color:#f4d27a;
+}
+
+p{
+  font-size:16px;
+  line-height:1.5;
 }
 
 input{
-padding:10px;
-font-size:16px;
+  width:100%;
+  max-width:320px;
+  padding:14px 16px;
+  font-size:16px;
+  border-radius:12px;
+  border:1px solid #d4af37;
+  background:#fff;
+  color:#111;
+  margin-top:10px;
 }
 
 button{
-padding:12px 20px;
-font-size:16px;
-margin-top:15px;
-background:#d4af37;
-border:none;
-border-radius:5px;
-cursor:pointer;
+  padding:14px 24px;
+  font-size:16px;
+  font-weight:bold;
+  margin-top:16px;
+  background:#d4af37;
+  color:#1b1b1b;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.05);
 }
 
 .resultado{
-margin-top:20px;
-font-size:18px;
+  margin-top:28px;
+  text-align:left;
+  background:#fffaf0;
+  color:#222;
+  border-radius:16px;
+  padding:20px 18px;
+  font-size:17px;
+  line-height:1.75;
+  white-space:pre-line;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  border-left:5px solid #d4af37;
 }
 
+.resultado strong{
+  color:#7a4b00;
+}
+
+.topo-resultado{
+  display:block;
+  font-size:24px;
+  line-height:1.3;
+  margin-bottom:14px;
+  color:#7a4b00;
+}
+
+.whatsapp-box{
+  margin-top:20px;
+  padding:16px;
+  border-radius:14px;
+  background:#eefaf1;
+  border:1px solid #b7e4c7;
+}
+
+.whatsapp-texto{
+  margin:0 0 12px 0;
+  font-size:15px;
+  color:#184d2f;
+  line-height:1.6;
+}
+
+.whatsapp-btn{
+  display:inline-block;
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+  background:#25D366;
+  color:#ffffff;
+  font-weight:bold;
+  padding:14px 18px;
+  border-radius:12px;
+  font-size:16px;
+}
+
+.whatsapp-btn:hover{
+  filter:brightness(1.05);
+}
+
+@media (min-width: 768px){
+  .container{
+    padding:32px 30px;
+  }
+
+  .resultado{
+    font-size:18px;
+    padding:24px;
+  }
+
+  .whatsapp-btn{
+    width:auto;
+    min-width:320px;
+  }
+}
 </style>
 
 </head>
@@ -67,102 +167,507 @@ font-size:18px;
 </div>
 
 <script>
-
 function calcular(){
+  let data = document.getElementById("data").value;
 
-let data = document.getElementById("data").value;
+  if(!data){
+    alert("Digite sua data de nascimento");
+    return;
+  }
 
-if(!data){
-alert("Digite sua data de nascimento");
-return;
-}
+  let numeros = data.replace(/-/g,"");
+  let soma = 0;
 
-let numeros = data.replace(/-/g,"");
+  for(let i=0; i<numeros.length; i++){
+    soma += parseInt(numeros[i]);
+  }
 
-let soma = 0;
+  while(soma > 16){
+    soma = soma.toString().split('').reduce((a,b)=> parseInt(a) + parseInt(b), 0);
+  }
 
-for(let i=0;i<numeros.length;i++){
+  if(soma === 0){
+    soma = 16;
+  }
 
-soma += parseInt(numeros[i]);
-
-}
-
-while(soma > 16){
-
-soma = soma.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b));
-
-}
-
-let odus = {
-
-1:"ODU 1 – EXU
+  const odus = {
+    1: `ODU 1 – EXU
 Regente: Exu
 Elemento: Fogo
 Palavras-chave: Comunicação, movimento, astúcia, instabilidade
+
 🌟 Quem nasce sob o Odu 1 carrega a energia de Exu, o mensageiro, o articulador, o senhor dos caminhos.
 Você é uma pessoa naturalmente comunicativa, inteligente e cheia de recursos. Tem facilidade em se adaptar a diferentes ambientes, sabe negociar, convencer e abrir portas com a força da palavra. Sua mente é rápida, criativa e inquieta, sempre em busca de estímulos e novidades.
+
 💥 Desafios e bloqueios
-Apesar de toda essa potência, o Odu 1 também traz instabilidade emocional e tendência à impulsividade.
 - Pode haver dificuldade em manter foco e constância nos projetos.
 - Relações podem ser marcadas por conflitos ou mal-entendidos, especialmente quando há excesso de sarcasmo ou manipulação.
 - A vida pode parecer cheia de altos e baixos, como se tudo mudasse rápido demais.
+
 Esses desafios surgem quando a energia de Exu está negativa ou desequilibrada. Isso acontece, por exemplo, quando você ignora sua intuição, age sem pensar ou se envolve em situações que não respeitam sua verdade.
+
 🌱 Caminhos de cura e equilíbrio
-- Disciplina emocional: Aprender a pausar antes de reagir.
-- Rituais de limpeza e proteção: Banhos de ervas, defumações e oferendas simples ajudam a estabilizar a energia.
-- Trabalhos com a palavra: Escrever, ensinar, comunicar, tudo isso fortalece seu dom e canaliza sua força de forma positiva.
+- Disciplina emocional: aprender a pausar antes de reagir.
+- Rituais de limpeza e proteção: banhos de ervas, defumações e oferendas simples ajudam a estabilizar a energia.
+- Trabalhos com a palavra: escrever, ensinar, comunicar, tudo isso fortalece seu dom e canaliza sua força de forma positiva.
+
 Você tem o dom de abrir caminhos, mas precisa aprender a não se perder neles. Quando está alinhada, sua presença transforma ambientes e inspira pessoas.
 
 ✨ Quer aprofundar seu caminho espiritual?
 Se você sente que esse Odu fala diretamente com sua vida, e quer entender como equilibrar sua energia, superar bloqueios ou abrir seus caminhos com mais clareza, eu posso te ajudar.
-Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.
-🌿 Entre em contato com nosso WhatsApp 31991797439 e agende sua consulta.",
-2:"Mensagem do ODU 2",
-3:"Mensagem do ODU 3",
-4:"Mensagem do ODU 4",
-5:"Mensagem do ODU 5",
-6:"Mensagem do ODU 6",
-7:"Mensagem do ODU 7",
-8:"Mensagem do ODU 8",
-9:"ODU 9 – YANSÃ / YEMANJÁ
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    2: `ODU 2 – OGUM
+Regente: Ogum
+Elemento: Fogo
+Palavras-chave: Coragem, ação, proteção, enfrentamento
+
+🌟 Quem nasce sob o Odu 2 carrega a força de Ogum, o orixá guerreiro, senhor dos caminhos abertos e da superação.
+Você é uma pessoa determinada, direta e com espírito de liderança. Tem facilidade em tomar decisões, enfrentar desafios e seguir em frente mesmo quando tudo parece difícil. Sua energia é de ação, movimento e conquista. Você não espera que a vida aconteça, você faz acontecer.
+
+💥 Desafios e bloqueios
+- Você pode ter dificuldade em lidar com pessoas mais sensíveis ou lentas.
+- Pode se sentir frustrado quando as coisas não andam no seu ritmo.
+- A tendência ao controle e à impaciência pode gerar desgaste em relações pessoais e profissionais.
+- Em momentos de desequilíbrio, pode se sentir sozinho, como se tivesse que lutar o tempo todo sem apoio.
+
+Esses desafios surgem quando você ignora sua necessidade de descanso, conexão emocional ou espiritual. Ogum é força, mas também é estratégia, e saber quando parar é tão importante quanto saber quando agir.
+
+🌱 Caminhos de cura e equilíbrio
+- Práticas de aterramento: caminhadas na natureza, banhos de descarrego e meditações ajudam a canalizar sua energia com mais leveza.
+- Rituais de proteção e abertura de caminhos: incensos, velas e banhos com ervas como espada-de-são-jorge e alecrim fortalecem sua conexão com Ogum.
+- Trabalhos com metas e foco: planejar antes de agir é essencial para evitar desgaste e frustração.
+
+Você nasceu para liderar, mas precisa aprender a liderar com sabedoria e escuta. Quando está alinhado, sua presença inspira coragem e transforma ambientes com ação e propósito.
+
+✨ Quer entender como usar sua força com mais equilíbrio?
+Se esse Odu ressoou com sua história, e você quer aprender a canalizar sua energia para abrir caminhos, superar bloqueios e fortalecer sua missão, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    3: `ODU 3 – OBALUAYÊ
+Regente: Obaluayê
+Elemento: Terra
+Palavras-chave: Cura, introspecção, sabedoria, renascimento
+
+🌟 Quem nasce sob o Odu 3 carrega a energia de Obaluayê, o orixá da cura, da transformação profunda e da sabedoria silenciosa.
+Você é uma pessoa reservada, observadora e com grande profundidade emocional. Tem uma sensibilidade espiritual elevada, mesmo que não demonstre isso abertamente. Costuma ser aquela pessoa que sente o ambiente, percebe o que os outros não dizem e guarda muito dentro de si.
+
+Sua missão está ligada à cura, própria e dos outros. Pode ter enfrentado dores físicas ou emocionais desde cedo, e isso te tornou mais forte, mais consciente e mais empática. Você tem o dom de regenerar, mas precisa aprender a não carregar o peso do mundo sozinho.
+
+💥 Desafios e bloqueios
+- Tendência ao isolamento e à introspecção excessiva.
+- Medo de se abrir emocionalmente ou confiar nas pessoas.
+- Dificuldade em lidar com mudanças bruscas ou ambientes muito agitados.
+- Pode atrair situações de doença ou desgaste energético quando não cuida da própria espiritualidade.
+
+Esses desafios surgem quando você ignora sua necessidade de recolhimento, proteção e conexão com o sagrado. Obaluayê ensina que a cura começa no silêncio, mas não no abandono.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de limpeza e rituais de proteção: são essenciais para manter seu campo energético saudável.
+- Momentos de solitude consciente: recolher-se para se fortalecer, não para fugir.
+- Trabalhos com ancestralidade e espiritualidade profunda: você tem facilidade em acessar saberes antigos e pode ser um canal de cura para os outros.
+
+Você nasceu com a missão de curar, mas precisa se curar primeiro. Quando está alinhado, sua presença traz paz, profundidade e transformação para quem cruza seu caminho.
+
+✨ Quer entender como equilibrar sua energia e cumprir sua missão espiritual?
+Se esse Odu ressoou com sua história, e você sente que precisa de orientação para lidar com bloqueios, dores ou despertar seu dom de cura, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    4: `ODU 4 – YEMANJÁ
+Regente: Yemanjá
+Elemento: Água
+Palavras-chave: Família, liderança, harmonia, proteção
+
+🌟 Quem nasce sob o Odu 4 carrega a energia de Yemanjá, a grande mãe das águas, símbolo de acolhimento, liderança emocional e sabedoria feminina.
+Você é uma pessoa naturalmente protetora, com forte senso de responsabilidade e cuidado com os outros. Tem facilidade em liderar grupos, mediar conflitos e criar ambientes seguros e harmoniosos. Sua presença transmite confiança, estabilidade e afeto.
+
+É comum que pessoas com esse Odu sejam vistas como “coluna da família” ou “ombro amigo”, mesmo quando ainda estão aprendendo a cuidar de si. Você tem uma alma maternal, mesmo que não seja mãe biologicamente.
+
+💥 Desafios e bloqueios
+- Tendência a assumir responsabilidades demais, esquecendo de si mesma.
+- Dificuldade em dizer “não” e em colocar limites.
+- Pode atrair pessoas que se apoiam demais em você, gerando desgaste emocional.
+- Em desequilíbrio, pode sentir tristeza profunda, sensação de abandono ou sobrecarga.
+
+Esses desafios surgem quando você ignora sua própria necessidade de acolhimento e descanso. Yemanjá ensina que cuidar dos outros é nobre, mas cuidar de si é essencial.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de ervas calmantes e rituais de reconexão emocional: camomila, alfazema e rosa branca são ótimas aliadas.
+- Trabalhos com ancestralidade feminina: honrar suas raízes e curar padrões familiares é parte da sua missão.
+- Práticas de autocuidado e limites conscientes: aprender a dizer “não” com amor é um ato de cura.
+
+Você nasceu para liderar com o coração, mas precisa lembrar que amor próprio é a base de toda liderança verdadeira. Quando está alinhada, sua energia transforma lares, grupos e vidas com sabedoria e afeto.
+
+✨ Quer entender como equilibrar sua energia e fortalecer sua missão emocional?
+Se esse Odu ressoou com sua história, e você sente que precisa de orientação para lidar com sobrecarga, relações difíceis ou despertar sua força interior, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    5: `ODU 5 – OXUM
+Regente: Oxum
+Elemento: Água
+Palavras-chave: Amor, sensibilidade, beleza, diplomacia
+
+🌟 Quem nasce sob o Odu 5 carrega a energia de Oxum, a orixá das águas doces, da fertilidade, do amor e da prosperidade emocional.
+Você é uma pessoa sensível, intuitiva e com forte conexão com o universo afetivo. Tem facilidade em criar vínculos, perceber o que os outros sentem e agir com delicadeza e empatia. Sua presença costuma ser acolhedora, charmosa e envolvente, você encanta sem esforço.
+
+É comum que pessoas com esse Odu tenham dons ligados à estética, à arte, à comunicação emocional e à espiritualidade intuitiva. Você tem uma alma que busca beleza, harmonia e conexão verdadeira.
+
+💥 Desafios e bloqueios
+- Tendência à dependência emocional ou à idealização de pessoas e situações.
+- Dificuldade em lidar com rejeição, críticas ou ambientes agressivos.
+- Pode se sentir desvalorizada ou invisível quando não é reconhecida afetivamente.
+- Em desequilíbrio, pode se fechar, se tornar insegura ou até manipuladora para manter vínculos.
+
+Esses desafios surgem quando você ignora sua própria necessidade de amor-próprio e validação interna. Oxum ensina que o amor começa dentro, e que a beleza mais poderosa é a que vem da alma.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de ervas doces e rituais de autoestima: ervas como camomila, rosa branca e mel fortalecem sua energia.
+- Práticas de autocuidado e expressão criativa: dança, escrita, arte e beleza são canais de cura para você.
+- Trabalhos de reconexão emocional: aprender a se valorizar e a se proteger energeticamente é essencial.
+
+Você nasceu para amar e ser amada, mas precisa lembrar que o amor mais transformador é aquele que você dá a si mesma. Quando está alinhada, sua energia cura, inspira e transforma tudo ao redor com leveza e profundidade.
+
+✨ Quer fortalecer sua energia emocional e espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a se proteger emocionalmente, despertar sua força afetiva ou equilibrar seus relacionamentos, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    6: `ODU 6 – OXÓSSI
+Regente: Oxóssi
+Elemento: Terra e Ar
+Palavras-chave: Fartura, sabedoria, busca, expansão
+
+🌟 Quem nasce sob o Odu 6 carrega a energia de Oxóssi, o caçador sagrado, guardião das matas e da sabedoria ancestral.
+Você é uma pessoa curiosa, observadora e com sede de conhecimento. Tem uma mente ágil, estratégica e está sempre em busca de crescimento, seja material, espiritual ou intelectual. Sua energia é de expansão: você não se contenta com pouco, quer explorar, aprender e conquistar.
+
+É comum que pessoas com esse Odu tenham múltiplos interesses, talentos diversos e facilidade em se adaptar a diferentes áreas. Você é como o caçador: silencioso, atento e certeiro quando decide agir.
+
+💥 Desafios e bloqueios
+- Tendência à dispersão: começa muitas coisas e nem sempre termina.
+- Dificuldade em lidar com rotina ou ambientes muito rígidos.
+- Pode sentir ansiedade por querer resultados rápidos ou por não saber qual caminho seguir.
+- Em desequilíbrio, pode se sentir perdido, desconectado ou com sensação de estagnação.
+
+Esses desafios surgem quando você ignora sua necessidade de propósito e direção. Oxóssi ensina que a verdadeira fartura vem da clareza na busca, não da pressa ou da quantidade.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de ervas de expansão e foco: alecrim, hortelã e louro ajudam a fortalecer sua energia.
+- Rituais de conexão com a natureza: caminhadas em áreas verdes, meditação ao ar livre e oferendas simples fortalecem sua ligação com Oxóssi.
+- Trabalhos de foco e propósito: aprender a escolher bem suas batalhas é essencial para colher frutos reais.
+
+Você nasceu para buscar, mas precisa lembrar que a sabedoria está em saber o que vale a pena caçar. Quando está alinhado, sua energia atrai oportunidades, prosperidade e crescimento em todas as áreas da vida.
+
+✨ Quer entender como canalizar sua energia para prosperar com equilíbrio?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com a ansiedade, encontrar seu propósito ou abrir caminhos com sabedoria, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    7: `ODU 7 – OBALUAYÊ / EXU
+Regentes: Obaluayê e Exu
+Elementos: Terra e Fogo
+Palavras-chave: Intensidade, extremos, saúde, instabilidade, transformação
+
+🌟 Quem nasce sob o Odu 7 carrega uma energia poderosa e complexa, a união entre Obaluayê (cura, introspecção) e Exu (movimento, comunicação).
+Você é uma pessoa intensa, que vive os extremos: ou tudo flui com força, ou parece travar completamente. Tem momentos de grande brilho e expansão, seguidos por períodos de recolhimento ou confusão. Essa dualidade faz parte da sua jornada, e é justamente nela que mora sua força.
+
+Sua energia é de transformação profunda. Você sente o mundo com intensidade, percebe o invisível e tem uma sensibilidade espiritual elevada. Pode ter enfrentado desafios ligados à saúde física ou emocional, especialmente em fases de desequilíbrio energético.
+
+💥 Desafios e bloqueios
+- Oscilações emocionais e dificuldade em manter estabilidade.
+- Tendência a atrair situações de conflito ou ambientes carregados.
+- Pode sentir que a vida é uma constante batalha entre luz e sombra.
+- Em desequilíbrio, pode se sentir perdido, sem direção ou com sensação de estar “fora do próprio corpo”.
+
+Esses desafios surgem quando você ignora sua necessidade de equilíbrio entre ação e introspecção. Exu te impulsiona, Obaluayê te recolhe, e você precisa aprender a dançar entre esses dois ritmos sem se perder.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de limpeza e rituais de aterramento: são essenciais para estabilizar sua energia. Use ervas como arruda, guiné, alecrim e hortelã.
+- Práticas de escuta interior e expressão consciente: escrever, meditar e falar com verdade ajudam a liberar tensões.
+- Trabalhos de alinhamento energético: você se beneficia muito de limpezas espirituais regulares e rituais de proteção.
+
+Você nasceu com o dom de transitar entre mundos, mas precisa lembrar que o equilíbrio é o seu verdadeiro poder. Quando está alinhado, sua energia é magnética, transformadora e capaz de abrir caminhos para si e para os outros.
+
+✨ Quer entender como equilibrar sua energia e transformar seus extremos em força?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, proteger sua saúde energética ou despertar seu poder espiritual, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    8: `ODU 8 – OXAGUIÃ
+Regente: Oxaguiã
+Elemento: Fogo e Ar
+Palavras-chave: Corte, recomeço, intensidade, transformação
+
+🌟 Quem nasce sob o Odu 8 carrega a energia de Oxaguiã, o jovem guerreiro da espada e do pilão, símbolo de força mental, inovação e ruptura com padrões antigos.
+Você é uma pessoa intensa, determinada e com espírito de renovação. Tem uma mente inquieta, criativa e muitas vezes vive situações de “corte de caminho”, mudanças bruscas, reviravoltas e recomeços inesperados. Nada na sua vida é morno: ou é tudo, ou é nada.
+
+Esse Odu traz uma energia de desconstrução para reconstrução. Você veio ao mundo para quebrar ciclos, romper padrões familiares e abrir novos caminhos, mesmo que isso custe dor, esforço e coragem.
+
+💥 Desafios e bloqueios
+- Tendência a viver rupturas constantes: amizades, relacionamentos, empregos ou projetos que começam e terminam rapidamente.
+- Dificuldade em lidar com estabilidade, o novo sempre parece mais atraente.
+- Pode sentir que está sempre “recomeçando do zero”, como se a vida não permitisse continuidade.
+- Em desequilíbrio, pode agir com impulsividade, teimosia ou entrar em conflitos desnecessários.
+
+Esses desafios surgem quando você ignora sua necessidade de estrutura emocional e espiritual. Oxaguiã ensina que cortar é necessário, mas reconstruir com consciência é essencial.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de limpeza e rituais de recomeço: use ervas como alecrim, hortelã, manjericão e louro para renovar sua energia.
+- Práticas de foco e planejamento: aprender a sustentar seus projetos é um exercício espiritual para você.
+- Trabalhos de alinhamento energético: limpezas regulares e rituais de proteção ajudam a estabilizar sua força.
+
+Você nasceu para transformar, mas precisa lembrar que a verdadeira força está em construir com propósito, não apenas em romper. Quando está alinhado, sua energia abre caminhos, inspira mudanças e lidera com coragem e inovação.
+
+✨ Quer entender como transformar seus recomeços em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, cortar o que te prende ou abrir caminhos com sabedoria, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    9: `ODU 9 – IANSÃ / YEMANJÁ
 Regentes: Iansã e Yemanjá
 Elemento: Ar e Água
 Palavras-chave: Conflito de forças, intensidade emocional, transformação, sabedoria
+
 🌟 Quem nasce sob o Odu 9 carrega uma energia poderosa e dual, a força dos ventos de Iansã e a profundidade das águas de Yemanjá.
 Você é uma pessoa intensa, emocionalmente profunda e espiritualmente sensível. Vive batalhas internas entre razão e emoção, ação e recolhimento, coragem e vulnerabilidade. Essa guerra de energias é parte da sua missão: aprender a equilibrar forças opostas dentro de si.
+
 Sua presença é marcante. Você tem carisma, magnetismo e costuma atrair pessoas e situações intensas. É como um farol emocional, sente tudo com profundidade e, muitas vezes, carrega dores que não são suas. Tem dons espirituais, intuição aguçada e uma capacidade natural de guiar e proteger os outros.
+
 💥 Desafios e bloqueios
 - Oscilações emocionais e dificuldade em manter estabilidade interna.
 - Tendência a viver relações intensas, com altos e baixos.
 - Pode sentir que está sempre em conflito: com os outros ou consigo mesma.
 - Em desequilíbrio, pode se tornar explosiva, retraída ou sentir que está “fora do próprio eixo”.
+
 Esses desafios surgem quando você ignora sua necessidade de autoconhecimento e equilíbrio energético. Iansã te impulsiona a agir, Yemanjá te convida a refletir, e você precisa aprender a dançar entre essas forças com consciência.
+
 🌱 Caminhos de cura e equilíbrio
-- Banhos de limpeza emocional e proteção espiritual: Use ervas como manjericão, alfazema, rosa branca e hortelã.
-- Práticas de escuta interior e expressão emocional: Escrever, meditar, dançar ou falar sobre o que sente ajuda a liberar tensões.
-- Trabalhos de reconexão com sua missão espiritual: Você tem dons que precisam ser reconhecidos e canalizados com propósito.
+- Banhos de limpeza emocional e proteção espiritual: use ervas como manjericão, alfazema, rosa branca e hortelã.
+- Práticas de escuta interior e expressão emocional: escrever, meditar, dançar ou falar sobre o que sente ajuda a liberar tensões.
+- Trabalhos de reconexão com sua missão espiritual: você tem dons que precisam ser reconhecidos e canalizados com propósito.
+
 Você nasceu para transformar, mas precisa lembrar que a verdadeira força está em saber quando lutar e quando acolher. Quando está alinhada, sua energia inspira, cura e movimenta tudo ao seu redor com sabedoria e intensidade.
 
 ✨ Quer entender como equilibrar suas forças internas e transformar sua energia em poder espiritual?
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, proteger sua energia ou despertar seus dons espirituais, eu posso te ajudar.
-Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.
-🌿 Entre em contato com nosso WhatsApp 31991797439 e agende sua consulta.",
-10:"Mensagem do ODU 10",
-11:"Mensagem do ODU 11",
-12:"Mensagem do ODU 12",
-13:"Mensagem do ODU 13",
-14:"Mensagem do ODU 14",
-15:"Mensagem do ODU 15",
-16:"Mensagem do ODU 16"
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-};
+    10: `ODU 10 – OXALÁ
+Regente: Oxalá
+Elemento: Ar
+Palavras-chave: Sabedoria, introspecção, tristeza, guerra mental
 
-document.getElementById("resultado").innerHTML =
+🌟 Quem nasce sob o Odu 10 carrega a energia de Oxalá, o orixá da paz, da criação e da sabedoria ancestral.
+Você é uma pessoa profunda, reflexiva e com uma conexão espiritual elevada. Tem uma mente poderosa, capaz de compreender o invisível, perceber padrões e acessar verdades que muitos ignoram. Sua presença é serena, mas intensa, você não precisa falar muito para impactar.
 
-"<b>Seu ODU é: "+soma+"</b><br><br>"+odus[soma];
+Esse Odu traz uma missão espiritual ligada à consciência e à cura mental. Você veio ao mundo para aprender a lidar com os próprios pensamentos, emoções e silêncios, e, ao fazer isso, ajudar os outros a encontrarem paz também.
 
+💥 Desafios e bloqueios
+- Tendência à tristeza profunda, melancolia ou sensação de vazio.
+- Dificuldade em lidar com ambientes barulhentos, caóticos ou superficiais.
+- Pode se sentir incompreendido, solitário ou fora de lugar.
+- Em desequilíbrio, pode se fechar demais, se isolar ou viver conflitos internos intensos.
+
+Esses desafios surgem quando você ignora sua necessidade de acolhimento espiritual e expressão emocional. Oxalá ensina que a paz não é ausência de dor, é presença de consciência.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de ervas para clareza mental e leveza emocional: use alfazema, lavanda, camomila e manjericão.
+- Práticas de meditação, silêncio e escrita terapêutica: você precisa de espaços para se ouvir e se compreender.
+- Trabalhos de reconexão com sua missão espiritual: você tem dons de cura, orientação e sabedoria que precisam ser ativados com propósito.
+
+Você nasceu para ser guia, mas precisa lembrar que guiar começa por se permitir sentir, curar e transformar a si mesmo. Quando está alinhado, sua energia traz paz, profundidade e clareza para todos ao redor.
+
+✨ Quer entender como transformar seus pensamentos em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com tristeza, encontrar paz interior ou despertar sua sabedoria espiritual, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    11: `ODU 11 – EXU / OGUM / IANSÃ
+Regentes: Exu, Ogum e Iansã
+Elemento predominante: Fogo
+Palavras-chave: Conflito, movimento, superação, intensidade, guerra de caminhos
+
+🌟 Quem nasce sob o Odu 11 carrega uma energia vibrante e desafiadora, a força combinada de Exu (comunicação e caminhos), Ogum (guerra e ação) e Iansã (transformação e ventos).
+Você é uma pessoa intensa, determinada e com espírito de luta. Sua vida é marcada por desafios constantes, como se estivesse sempre enfrentando uma batalha, seja interna, emocional ou espiritual. Mas essa guerra não é castigo: é parte da sua missão de superação e evolução acelerada.
+
+Você tem uma energia de movimento, coragem e transformação. É alguém que não se acomoda, que busca respostas, que enfrenta o que precisa ser enfrentado. E mesmo quando tudo parece difícil, você encontra força para continuar.
+
+💥 Desafios e bloqueios
+- Caminhos com obstáculos: nada vem fácil, mas tudo vem com aprendizado.
+- Tendência a viver conflitos, com os outros ou consigo mesma.
+- Pode atrair situações de instabilidade, rupturas ou decisões difíceis.
+- Em desequilíbrio, pode agir com impulsividade, raiva ou se sentir constantemente em guerra com a vida.
+
+Esses desafios surgem quando você ignora sua necessidade de equilíbrio entre ação e reflexão. Exu te impulsiona a falar, Ogum a agir, Iansã a mudar, mas você precisa aprender a escolher suas batalhas com sabedoria.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de descarrego e rituais de proteção energética: use ervas como arruda, guiné, alecrim e hortelã para limpar e fortalecer.
+- Práticas de escuta interior e canalização da raiva: escrever, meditar, praticar atividades físicas ou artísticas ajuda a liberar tensões.
+- Trabalhos de abertura de caminhos e reconexão espiritual: você se beneficia muito de limpezas regulares e rituais de alinhamento.
+
+Você nasceu para vencer, mas precisa lembrar que a verdadeira vitória é aquela que te traz paz, não apenas conquista. Quando está alinhada, sua energia é transformadora, corajosa e capaz de abrir caminhos para si e para os outros com força e propósito.
+
+✨ Quer entender como transformar seus desafios em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com conflitos, abrir seus caminhos ou despertar sua força interior, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    12: `ODU 12 – XANGÔ
+Regente: Xangô
+Elemento: Fogo e Terra
+Palavras-chave: Justiça, equilíbrio, liderança, firmeza, sabedoria
+
+🌟 Quem nasce sob o Odu 12 carrega a energia de Xangô, o orixá da justiça, da sabedoria e do poder equilibrado.
+Você é uma pessoa correta, ética e com forte senso de responsabilidade. Tem uma mente lógica, estratégica e uma postura firme diante da vida. Costuma ser referência para os outros, alguém que transmite confiança, liderança e discernimento.
+
+Esse Odu traz uma missão espiritual ligada à verdade, à integridade e à proteção dos injustiçados. Você sente quando algo está errado, e não consegue ignorar. Tem uma força natural para mediar conflitos, tomar decisões difíceis e manter a ordem onde há caos.
+
+💥 Desafios e bloqueios
+- Tendência à rigidez excessiva: querer controlar tudo ou exigir demais de si e dos outros.
+- Dificuldade em lidar com injustiças sem se envolver emocionalmente.
+- Pode atrair situações de julgamento, perseguição ou calúnia.
+- Em desequilíbrio, pode se tornar autoritário, arrogante ou emocionalmente fechado.
+
+Esses desafios surgem quando você ignora sua necessidade de flexibilidade emocional e conexão espiritual. Xangô ensina que a justiça verdadeira não é apenas racional, ela também é compassiva.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de equilíbrio e firmeza espiritual: use ervas como folha de louro, alecrim, manjericão e casca de limão.
+- Práticas de meditação e escuta interior: você precisa de momentos de silêncio para não se perder na rigidez mental.
+- Trabalhos de reconexão com sua missão de justiça: você tem dons de liderança espiritual e pode ser guia para causas coletivas.
+
+Você nasceu para ser justo, mas precisa lembrar que a justiça mais poderosa é aquela que transforma sem ferir. Quando está alinhado, sua energia inspira respeito, promove equilíbrio e protege quem precisa de voz.
+
+✨ Quer entender como usar sua força com sabedoria e equilíbrio?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com julgamentos, fortalecer sua missão ou equilibrar sua energia de liderança, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    13: `ODU 13 – NANÃ
+Regente: Nanã Burukê
+Elemento: Terra e Água
+Palavras-chave: Sabedoria ancestral, método, cura emocional, encerramento de ciclos
+
+🌟 Quem nasce sob o Odu 13 carrega a energia de Nanã, a mais velha entre os orixás, senhora dos mistérios da vida e da morte, guardiã da sabedoria ancestral.
+Você é uma pessoa profunda, metódica e com uma conexão espiritual muito antiga. Tem uma alma velha, que carrega memórias, intuições e aprendizados que nem sempre são fáceis de explicar. Sua energia é de cura lenta, mas poderosa, você transforma o que toca, mesmo que leve tempo.
+
+Esse Odu traz uma missão espiritual ligada à decantação emocional: você veio ao mundo para limpar padrões, encerrar ciclos e ajudar os outros a se libertarem de dores antigas. É comum que pessoas com esse Odu tenham uma postura mais reservada, observadora e cuidadosa. Você não age por impulso, você age com propósito.
+
+💥 Desafios e bloqueios
+- Tendência à lentidão ou à procrastinação, especialmente em momentos de mudança.
+- Dificuldade em lidar com ambientes agitados ou pessoas muito impulsivas.
+- Pode carregar dores familiares, padrões antigos ou traumas que não são seus.
+- Em desequilíbrio, pode se tornar rígida, melancólica ou emocionalmente fechada.
+
+Esses desafios surgem quando você ignora sua necessidade de tempo, silêncio e respeito ao próprio ritmo. Nanã ensina que a cura não é rápida, ela é profunda, e exige paciência.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de limpeza emocional e rituais de encerramento de ciclos: use ervas como alfazema, camomila, folha de mamona e flores do campo.
+- Práticas de conexão com a ancestralidade: honrar seus antepassados, estudar espiritualidade e respeitar os ciclos da vida são essenciais.
+- Trabalhos de cura emocional e proteção energética: você se beneficia muito de rituais que envolvem terra, água e silêncio.
+
+Você nasceu para curar, mas precisa lembrar que a cura começa quando você se permite sentir, aceitar e transformar. Quando está alinhada, sua energia traz paz, sabedoria e libertação para todos ao seu redor.
+
+✨ Quer entender como transformar sua sabedoria em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com padrões antigos, curar dores emocionais ou despertar sua missão espiritual, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    14: `ODU 14 – OXUMARÊ
+Regente: Oxumarê
+Elemento: Água com influência de Terra
+Palavras-chave: Transformação, dualidade, renovação, movimento, ciclos
+
+🌟 Quem nasce sob o Odu 14 carrega a energia de Oxumarê, o orixá do arco-íris, da serpente sagrada e dos ciclos da vida.
+Você é uma pessoa versátil, intensa e em constante transformação. Sua energia é fluida, como uma serpente que se move entre mundos. Tem uma alma que transita entre extremos: razão e emoção, ação e recolhimento, luz e sombra. E é justamente essa dualidade que te torna tão especial.
+
+Esse Odu traz uma missão espiritual ligada à renovação e à superação de padrões. Você veio ao mundo para quebrar repetições, curar ciclos e se reinventar, mesmo que isso exija coragem para deixar o velho para trás.
+
+💥 Desafios e bloqueios
+- Tendência à instabilidade emocional e dificuldade em manter constância.
+- Pode viver altos e baixos intensos, tanto na vida pessoal quanto profissional.
+- Dificuldade em tomar decisões ou se posicionar com firmeza.
+- Em desequilíbrio, pode se sentir dividido, confuso ou com medo de ser rejeitado por sua verdadeira essência.
+
+Esses desafios surgem quando você ignora sua necessidade de acolher suas fases internas com respeito e consciência. Oxumarê ensina que mudar não é fraqueza, é força espiritual.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de renovação e rituais de transformação: use ervas como hortelã, alecrim, lavanda e folhas verdes.
+- Práticas de expressão criativa e reconexão com o corpo: dança, arte, escrita e movimento ajudam a canalizar sua energia.
+- Trabalhos de alinhamento com seus ciclos internos: você se beneficia muito de rituais que respeitam fases da lua, estações e momentos de recolhimento.
+
+Você nasceu para mudar, mas precisa lembrar que a verdadeira transformação acontece quando você honra quem é em cada fase da jornada. Quando está alinhado, sua energia inspira, cura e renova tudo ao seu redor com beleza e profundidade.
+
+✨ Quer entender como transformar seus ciclos em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, se reinventar com consciência ou despertar sua missão espiritual, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    15: `ODU 15 – YABÁS
+Regentes: As Yabás (Oxum, Iansã, Obá, Nanã, Ewá)
+Elemento: Água e Ar
+Palavras-chave: Instabilidade, emoção, força feminina, intensidade, transformação
+
+🌟 Quem nasce sob o Odu 15 carrega a energia das Yabás, as orixás femininas que representam diferentes aspectos da força emocional, da sabedoria intuitiva e da transformação.
+Você é uma pessoa intensa, sensível e com uma alma profundamente conectada ao universo feminino, independentemente do seu gênero. Sua energia é marcada por emoções fortes, mudanças constantes e uma busca por equilíbrio entre o que sente e o que vive.
+
+Esse Odu traz uma missão espiritual ligada à cura emocional e à reconexão com a própria essência. Você veio ao mundo para aprender a lidar com instabilidades internas, transformar dores em força e inspirar outras pessoas com sua sensibilidade e coragem.
+
+💥 Desafios e bloqueios
+- Oscilações emocionais frequentes, que podem gerar confusão ou sensação de descontrole.
+- Dificuldade em manter constância em relacionamentos, projetos ou decisões.
+- Pode atrair situações de conflito emocional, ciúmes, insegurança ou dependência afetiva.
+- Em desequilíbrio, pode se sentir perdida, sobrecarregada ou com medo de mostrar sua verdadeira vulnerabilidade.
+
+Esses desafios surgem quando você ignora sua necessidade de acolhimento emocional, expressão criativa e conexão espiritual. As Yabás ensinam que a instabilidade não é fraqueza, é um convite à transformação.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de ervas para equilíbrio emocional e proteção: use alfazema, camomila, rosa branca, manjericão e mel.
+- Práticas de expressão emocional e reconexão com o corpo: dança, escrita, arte e autocuidado são canais poderosos para você.
+- Trabalhos de cura feminina e ancestralidade: você se beneficia muito de rituais que honram a linhagem materna e os ciclos da vida.
+
+Você nasceu para sentir, mas precisa lembrar que sentir com consciência é o caminho para transformar sua dor em poder. Quando está alinhada, sua energia inspira, cura e transforma tudo ao seu redor com beleza, profundidade e verdade.
+
+✨ Quer entender como transformar sua instabilidade em força espiritual?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com suas emoções, curar padrões afetivos ou despertar sua missão espiritual, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
+
+    16: `ODU 16 – OXALUFÃ
+Regente: Oxalufã
+Elemento: Ar
+Palavras-chave: Rigor, exigência, sabedoria, maturidade, introspecção
+
+🌟 Quem nasce sob o Odu 16 carrega a energia de Oxalufã, o Oxalá mais velho, símbolo da sabedoria ancestral, da paciência e da autoridade espiritual.
+Você é uma pessoa profunda, reservada e com uma postura naturalmente respeitável. Tem uma alma madura, mesmo que jovem no corpo. Sua energia é de reflexão, análise e exigência, com os outros, mas principalmente consigo mesma. Você não se contenta com superficialidades: busca sentido, verdade e coerência em tudo o que faz.
+
+Esse Odu traz uma missão espiritual ligada à disciplina, à ética e à construção de legado. Você veio ao mundo para ensinar, orientar e transformar com sabedoria, mas precisa aprender a flexibilizar e acolher os próprios limites.
+
+💥 Desafios e bloqueios
+- Tendência à rigidez emocional e mental: dificuldade em aceitar erros, mudanças ou vulnerabilidades.
+- Pode se sentir incompreendido, solitário ou sobrecarregado por responsabilidades.
+- Dificuldade em lidar com pessoas mais leves ou espontâneas, o excesso de seriedade pode afastar.
+- Em desequilíbrio, pode se tornar ranzinza, controlador ou emocionalmente fechado.
+
+Esses desafios surgem quando você ignora sua necessidade de leveza, perdão e conexão emocional. Oxalufã ensina que a autoridade verdadeira não está no controle, está na sabedoria de saber quando ceder.
+
+🌱 Caminhos de cura e equilíbrio
+- Banhos de serenidade e abertura emocional: use ervas como lavanda, camomila, manjericão e folhas brancas.
+- Práticas de escuta interior e reconexão com a leveza: meditação, silêncio, arte e contato com crianças ou animais ajudam a suavizar sua energia.
+- Trabalhos de reconexão com sua missão espiritual: você tem dons de liderança, ensino e cura, mas precisa ativá-los com compaixão.
+
+Você nasceu para guiar, mas precisa lembrar que a sabedoria mais poderosa é aquela que acolhe, não apenas corrige. Quando está alinhado, sua energia traz paz, respeito e transformação profunda para todos ao redor.
+
+✨ Quer entender como transformar sua exigência em força espiritual equilibrada?
+Se esse Odu ressoou com sua história, e você quer aprender a lidar com rigidez, despertar sua missão ou equilibrar sua energia de liderança, eu posso te ajudar.
+Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`
+  };
+
+  const mensagem = odus[soma];
+  const whatsappLink = "https://wa.me/5531991797439?text=" + encodeURIComponent("Olá! Fiz a leitura do meu Odu no site e quero uma orientação espiritual.");
+
+  document.getElementById("resultado").innerHTML = `
+    <span class="topo-resultado"><strong>Seu Odu é ${soma}</strong></span>
+    ${mensagem}
+
+    <div class="whatsapp-box">
+      <p class="whatsapp-texto">
+        Quer aprofundar sua leitura e receber uma orientação espiritual personalizada?
+      </p>
+      <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">
+        Falar no WhatsApp 31 99179-7439
+      </a>
+    </div>
+  `;
 }
-
 </script>
 
 </body>
