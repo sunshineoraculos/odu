@@ -1,197 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descubra seu Odu | Sunshine Oráculos</title>
 
-<title>Descubra seu ODU</title>
+  <style>
+    *{
+      box-sizing:border-box;
+    }
 
-<style>
-*{
-  box-sizing:border-box;
-}
+    :root{
+      --vinho:#bf0000;
+      --marrom:#6d2f1c;
+      --terracota:#a95034;
+      --dourado:#d5b12e;
+      --preto:#1b0b08;
+      --vermelho:#f63125;
+      --offwhite:#fffaf3;
+      --creme:#f4efe8;
+      --texto:#482418;
+      --texto-suave:#6a3a28;
+      --verde-whats:#25D366;
+    }
 
-body{
-  margin:0;
-  background:linear-gradient(180deg,#0f1720 0%, #151f2d 100%);
-  color:#f8f5ee;
-  font-family:Arial, Helvetica, sans-serif;
-  text-align:center;
-  padding:24px 16px;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-.container{
-  background:rgba(19, 27, 39, 0.96);
-  padding:24px 18px;
-  border-radius:18px;
-  max-width:820px;
-  margin:0 auto;
-  border:1px solid rgba(212,175,55,0.25);
-  box-shadow:0 10px 30px rgba(0,0,0,0.35);
-}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--texto);
+      text-align:center;
+      padding:24px 14px;
+      background:
+        radial-gradient(circle at top center, rgba(213,177,46,0.16) 0%, rgba(213,177,46,0.03) 18%, transparent 36%),
+        radial-gradient(circle at 15% 20%, rgba(191,0,0,0.05) 0%, transparent 22%),
+        radial-gradient(circle at 85% 28%, rgba(169,80,52,0.07) 0%, transparent 22%),
+        radial-gradient(circle at 20% 85%, rgba(246,49,37,0.05) 0%, transparent 18%),
+        linear-gradient(180deg, #f2ede7 0%, #ebe4dd 100%);
+      position:relative;
+      overflow-x:hidden;
+    }
 
-h1{
-  margin-top:0;
-  font-size:clamp(28px, 5vw, 42px);
-  color:#f4d27a;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 10% 12%, rgba(213,177,46,0.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 18%, rgba(191,0,0,0.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 24% 72%, rgba(109,47,28,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 78%, rgba(246,49,37,0.08) 0 2px, transparent 3px);
+      opacity:.8;
+    }
 
-p{
-  font-size:16px;
-  line-height:1.5;
-}
+    .container{
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      margin:0 auto;
+      padding:30px 18px 34px;
+      border-radius:28px;
+      background:rgba(255,250,243,0.82);
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(169,80,52,0.18);
+      box-shadow:
+        0 18px 50px rgba(68,27,14,0.10),
+        0 6px 18px rgba(0,0,0,0.05);
+    }
 
-input{
-  width:100%;
-  max-width:320px;
-  padding:14px 16px;
-  font-size:16px;
-  border-radius:12px;
-  border:1px solid #d4af37;
-  background:#fff;
-  color:#111;
-  margin-top:10px;
-}
+    .logo{
+      width:min(300px, 78vw);
+      height:auto;
+      display:block;
+      margin:0 auto 10px;
+      filter:drop-shadow(0 8px 16px rgba(109,47,28,0.10));
+    }
 
-button{
-  padding:14px 24px;
-  font-size:16px;
-  font-weight:bold;
-  margin-top:16px;
-  background:#d4af37;
-  color:#1b1b1b;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-  transition:0.2s ease;
-}
+    h1{
+      margin:8px 0 6px;
+      font-size:clamp(30px, 5vw, 48px);
+      line-height:1.1;
+      color:var(--vinho);
+      letter-spacing:0.3px;
+    }
 
-button:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.05);
-}
+    .subtitulo{
+      max-width:620px;
+      margin:0 auto 24px;
+      font-size:clamp(15px, 2.6vw, 18px);
+      line-height:1.7;
+      color:var(--texto-suave);
+    }
 
-.resultado{
-  margin-top:28px;
-  text-align:left;
-  background:#fffaf0;
-  color:#222;
-  border-radius:16px;
-  padding:20px 18px;
-  font-size:17px;
-  line-height:1.75;
-  white-space:pre-line;
-  box-shadow:0 6px 18px rgba(0,0,0,0.18);
-  border-left:5px solid #d4af37;
-}
+    .intro{
+      max-width:640px;
+      margin:0 auto 20px;
+      font-size:15px;
+      line-height:1.7;
+      color:var(--texto-suave);
+    }
 
-.resultado strong{
-  color:#7a4b00;
-}
+    .form-area{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      margin-top:8px;
+    }
 
-.topo-resultado{
-  display:block;
-  font-size:24px;
-  line-height:1.3;
-  margin-bottom:14px;
-  color:#7a4b00;
-}
+    .label-data{
+      font-size:15px;
+      color:var(--marrom);
+      font-weight:600;
+    }
 
-.whatsapp-box{
-  margin-top:20px;
-  padding:16px;
-  border-radius:14px;
-  background:#eefaf1;
-  border:1px solid #b7e4c7;
-}
+    input{
+      width:100%;
+      max-width:340px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(169,80,52,0.42);
+      background:#fffdfa;
+      color:var(--texto);
+      font-size:16px;
+      text-align:center;
+      outline:none;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,0.03);
+    }
 
-.whatsapp-texto{
-  margin:0 0 12px 0;
-  font-size:15px;
-  color:#184d2f;
-  line-height:1.6;
-}
+    input:focus{
+      border-color:var(--dourado);
+      box-shadow:0 0 0 4px rgba(213,177,46,0.12);
+    }
 
-.whatsapp-btn{
-  display:inline-block;
-  width:100%;
-  text-align:center;
-  text-decoration:none;
-  background:#25D366;
-  color:#ffffff;
-  font-weight:bold;
-  padding:14px 18px;
-  border-radius:12px;
-  font-size:16px;
-}
+    button{
+      border:none;
+      border-radius:14px;
+      padding:14px 24px;
+      background:linear-gradient(135deg, var(--vinho) 0%, var(--terracota) 100%);
+      color:#fffaf4;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(169,80,52,0.18);
+      transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    }
 
-.whatsapp-btn:hover{
-  filter:brightness(1.05);
-}
+    button:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.04);
+    }
 
-@media (min-width: 768px){
-  .container{
-    padding:32px 30px;
-  }
+    .resultado{
+      margin-top:30px;
+      padding:24px 18px;
+      border-radius:24px;
+      background:linear-gradient(180deg, #fffdf8 0%, #fff7ee 100%);
+      border:1px solid rgba(213,177,46,0.24);
+      box-shadow:0 10px 28px rgba(68,27,14,0.08);
+      color:var(--texto);
+      text-align:center;
+      font-size:17px;
+      line-height:1.9;
+      white-space:pre-line;
+      display:none;
+    }
 
-  .resultado{
-    font-size:18px;
-    padding:24px;
-  }
+    .topo-resultado{
+      display:block;
+      font-size:clamp(24px, 4vw, 34px);
+      line-height:1.35;
+      color:var(--vinho);
+      font-weight:700;
+      margin-bottom:14px;
+    }
 
-  .whatsapp-btn{
-    width:auto;
-    min-width:320px;
-  }
-}
-</style>
+    .resultado strong{
+      color:var(--marrom);
+    }
 
+    .whatsapp-box{
+      margin-top:24px;
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(180deg, #ffffff 0%, #f7fff8 100%);
+      border:1px solid rgba(37,211,102,0.20);
+    }
+
+    .whatsapp-texto{
+      margin:0 0 12px;
+      color:#275138;
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    .whatsapp-btn{
+      display:inline-block;
+      width:100%;
+      max-width:360px;
+      text-decoration:none;
+      text-align:center;
+      padding:14px 18px;
+      border-radius:14px;
+      background:var(--verde-whats);
+      color:#ffffff;
+      font-weight:700;
+      font-size:16px;
+      box-shadow:0 10px 20px rgba(37,211,102,0.20);
+      transition:filter .18s ease, transform .18s ease;
+    }
+
+    .whatsapp-btn:hover{
+      filter:brightness(1.04);
+      transform:translateY(-1px);
+    }
+
+    .rodape{
+      margin-top:20px;
+      font-size:13px;
+      color:#8a6558;
+      line-height:1.6;
+    }
+
+    @media (min-width:768px){
+      .container{
+        padding:38px 34px 42px;
+      }
+
+      .resultado{
+        padding:30px 28px;
+        font-size:18px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <img src="sunshine-logo.png" alt="Sunshine Oráculos" class="logo">
 
-<div class="container">
+    <h1>Descubra seu Odu</h1>
 
-<h1>Descubra seu ODU</h1>
+    <p class="subtitulo">
+      Uma leitura simbólica inspirada na sua data de nascimento, com a essência mística,
+      limpa e sofisticada da Sunshine Oráculos.
+    </p>
 
-<p>Digite sua data de nascimento</p>
+    <p class="intro">
+      Digite sua data de nascimento para receber sua leitura e, se desejar aprofundar,
+      fale diretamente com a Sunshine Oráculos no WhatsApp.
+    </p>
 
-<input type="date" id="data">
+    <div class="form-area">
+      <label for="data" class="label-data">Selecione sua data de nascimento</label>
+      <input type="date" id="data">
+      <button onclick="calcular()">Descobrir meu Odu</button>
+    </div>
 
-<br>
+    <div class="resultado" id="resultado"></div>
 
-<button onclick="calcular()">Descobrir</button>
+    <div class="rodape">
+      Sunshine Oráculos • Reconhecimento • Renovação • Sabedoria • Ancestralidade • Conexão
+    </div>
+  </div>
 
-<div class="resultado" id="resultado"></div>
+  <script>
+    function calcular(){
+      let data = document.getElementById("data").value;
 
-</div>
+      if(!data){
+        alert("Digite sua data de nascimento");
+        return;
+      }
 
-<script>
-function calcular(){
-  let data = document.getElementById("data").value;
+      let numeros = data.replace(/-/g,"");
+      let soma = 0;
 
-  if(!data){
-    alert("Digite sua data de nascimento");
-    return;
-  }
+      for(let i=0; i<numeros.length; i++){
+        soma += parseInt(numeros[i]);
+      }
 
-  let numeros = data.replace(/-/g,"");
-  let soma = 0;
+      while(soma > 16){
+        soma = soma.toString().split('').reduce((a,b)=> parseInt(a) + parseInt(b), 0);
+      }
 
-  for(let i=0; i<numeros.length; i++){
-    soma += parseInt(numeros[i]);
-  }
+      if(soma === 0){
+        soma = 16;
+      }
 
-  while(soma > 16){
-    soma = soma.toString().split('').reduce((a,b)=> parseInt(a) + parseInt(b), 0);
-  }
-
-  if(soma === 0){
-    soma = 16;
-  }
-
-  const odus = {
-    1: `ODU 1 – EXU
+      const odus = {
+        1: `ODU 1 – EXU
 Regente: Exu
 Elemento: Fogo
 Palavras-chave: Comunicação, movimento, astúcia, instabilidade
@@ -217,7 +319,7 @@ Você tem o dom de abrir caminhos, mas precisa aprender a não se perder neles. 
 Se você sente que esse Odu fala diretamente com sua vida, e quer entender como equilibrar sua energia, superar bloqueios ou abrir seus caminhos com mais clareza, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    2: `ODU 2 – OGUM
+        2: `ODU 2 – OGUM
 Regente: Ogum
 Elemento: Fogo
 Palavras-chave: Coragem, ação, proteção, enfrentamento
@@ -244,7 +346,7 @@ Você nasceu para liderar, mas precisa aprender a liderar com sabedoria e escuta
 Se esse Odu ressoou com sua história, e você quer aprender a canalizar sua energia para abrir caminhos, superar bloqueios e fortalecer sua missão, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    3: `ODU 3 – OBALUAYÊ
+        3: `ODU 3 – OBALUAYÊ
 Regente: Obaluayê
 Elemento: Terra
 Palavras-chave: Cura, introspecção, sabedoria, renascimento
@@ -273,7 +375,7 @@ Você nasceu com a missão de curar, mas precisa se curar primeiro. Quando está
 Se esse Odu ressoou com sua história, e você sente que precisa de orientação para lidar com bloqueios, dores ou despertar seu dom de cura, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    4: `ODU 4 – YEMANJÁ
+        4: `ODU 4 – YEMANJÁ
 Regente: Yemanjá
 Elemento: Água
 Palavras-chave: Família, liderança, harmonia, proteção
@@ -302,7 +404,7 @@ Você nasceu para liderar com o coração, mas precisa lembrar que amor próprio
 Se esse Odu ressoou com sua história, e você sente que precisa de orientação para lidar com sobrecarga, relações difíceis ou despertar sua força interior, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    5: `ODU 5 – OXUM
+        5: `ODU 5 – OXUM
 Regente: Oxum
 Elemento: Água
 Palavras-chave: Amor, sensibilidade, beleza, diplomacia
@@ -331,7 +433,7 @@ Você nasceu para amar e ser amada, mas precisa lembrar que o amor mais transfor
 Se esse Odu ressoou com sua história, e você quer aprender a se proteger emocionalmente, despertar sua força afetiva ou equilibrar seus relacionamentos, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    6: `ODU 6 – OXÓSSI
+        6: `ODU 6 – OXÓSSI
 Regente: Oxóssi
 Elemento: Terra e Ar
 Palavras-chave: Fartura, sabedoria, busca, expansão
@@ -360,7 +462,7 @@ Você nasceu para buscar, mas precisa lembrar que a sabedoria está em saber o q
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com a ansiedade, encontrar seu propósito ou abrir caminhos com sabedoria, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    7: `ODU 7 – OBALUAYÊ / EXU
+        7: `ODU 7 – OBALUAYÊ / EXU
 Regentes: Obaluayê e Exu
 Elementos: Terra e Fogo
 Palavras-chave: Intensidade, extremos, saúde, instabilidade, transformação
@@ -389,7 +491,7 @@ Você nasceu com o dom de transitar entre mundos, mas precisa lembrar que o equi
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, proteger sua saúde energética ou despertar seu poder espiritual, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    8: `ODU 8 – OXAGUIÃ
+        8: `ODU 8 – OXAGUIÃ
 Regente: Oxaguiã
 Elemento: Fogo e Ar
 Palavras-chave: Corte, recomeço, intensidade, transformação
@@ -418,7 +520,7 @@ Você nasceu para transformar, mas precisa lembrar que a verdadeira força está
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, cortar o que te prende ou abrir caminhos com sabedoria, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    9: `ODU 9 – IANSÃ / YEMANJÁ
+        9: `ODU 9 – IANSÃ / YEMANJÁ
 Regentes: Iansã e Yemanjá
 Elemento: Ar e Água
 Palavras-chave: Conflito de forças, intensidade emocional, transformação, sabedoria
@@ -447,7 +549,7 @@ Você nasceu para transformar, mas precisa lembrar que a verdadeira força está
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, proteger sua energia ou despertar seus dons espirituais, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    10: `ODU 10 – OXALÁ
+        10: `ODU 10 – OXALÁ
 Regente: Oxalá
 Elemento: Ar
 Palavras-chave: Sabedoria, introspecção, tristeza, guerra mental
@@ -476,7 +578,7 @@ Você nasceu para ser guia, mas precisa lembrar que guiar começa por se permiti
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com tristeza, encontrar paz interior ou despertar sua sabedoria espiritual, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    11: `ODU 11 – EXU / OGUM / IANSÃ
+        11: `ODU 11 – EXU / OGUM / IANSÃ
 Regentes: Exu, Ogum e Iansã
 Elemento predominante: Fogo
 Palavras-chave: Conflito, movimento, superação, intensidade, guerra de caminhos
@@ -505,7 +607,7 @@ Você nasceu para vencer, mas precisa lembrar que a verdadeira vitória é aquel
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com conflitos, abrir seus caminhos ou despertar sua força interior, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    12: `ODU 12 – XANGÔ
+        12: `ODU 12 – XANGÔ
 Regente: Xangô
 Elemento: Fogo e Terra
 Palavras-chave: Justiça, equilíbrio, liderança, firmeza, sabedoria
@@ -534,7 +636,7 @@ Você nasceu para ser justo, mas precisa lembrar que a justiça mais poderosa é
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com julgamentos, fortalecer sua missão ou equilibrar sua energia de liderança, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    13: `ODU 13 – NANÃ
+        13: `ODU 13 – NANÃ
 Regente: Nanã Burukê
 Elemento: Terra e Água
 Palavras-chave: Sabedoria ancestral, método, cura emocional, encerramento de ciclos
@@ -563,7 +665,7 @@ Você nasceu para curar, mas precisa lembrar que a cura começa quando você se 
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com padrões antigos, curar dores emocionais ou despertar sua missão espiritual, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    14: `ODU 14 – OXUMARÊ
+        14: `ODU 14 – OXUMARÊ
 Regente: Oxumarê
 Elemento: Água com influência de Terra
 Palavras-chave: Transformação, dualidade, renovação, movimento, ciclos
@@ -592,7 +694,7 @@ Você nasceu para mudar, mas precisa lembrar que a verdadeira transformação ac
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com instabilidade, se reinventar com consciência ou despertar sua missão espiritual, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    15: `ODU 15 – YABÁS
+        15: `ODU 15 – YABÁS
 Regentes: As Yabás (Oxum, Iansã, Obá, Nanã, Ewá)
 Elemento: Água e Ar
 Palavras-chave: Instabilidade, emoção, força feminina, intensidade, transformação
@@ -621,7 +723,7 @@ Você nasceu para sentir, mas precisa lembrar que sentir com consciência é o c
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com suas emoções, curar padrões afetivos ou despertar sua missão espiritual, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`,
 
-    16: `ODU 16 – OXALUFÃ
+        16: `ODU 16 – OXALUFÃ
 Regente: Oxalufã
 Elemento: Ar
 Palavras-chave: Rigor, exigência, sabedoria, maturidade, introspecção
@@ -649,26 +751,29 @@ Você nasceu para guiar, mas precisa lembrar que a sabedoria mais poderosa é aq
 ✨ Quer entender como transformar sua exigência em força espiritual equilibrada?
 Se esse Odu ressoou com sua história, e você quer aprender a lidar com rigidez, despertar sua missão ou equilibrar sua energia de liderança, eu posso te ajudar.
 Ofereço consultas personalizadas e trabalhos energéticos que respeitam sua essência e seu momento.`
-  };
+      };
 
-  const mensagem = odus[soma];
-  const whatsappLink = "https://wa.me/5531991797439?text=" + encodeURIComponent("Olá! Fiz a leitura do meu Odu no site e quero uma orientação espiritual.");
+      const mensagem = odus[soma];
+      const whatsappLink = "https://wa.me/5531991797439?text=" + encodeURIComponent("Olá! Fiz a leitura do meu Odu no site da Sunshine Oráculos e quero uma orientação espiritual.");
 
-  document.getElementById("resultado").innerHTML = `
-    <span class="topo-resultado"><strong>Seu Odu é ${soma}</strong></span>
-    ${mensagem}
+      const resultado = document.getElementById("resultado");
+      resultado.style.display = "block";
 
-    <div class="whatsapp-box">
-      <p class="whatsapp-texto">
-        Quer aprofundar sua leitura e receber uma orientação espiritual personalizada?
-      </p>
-      <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">
-        Falar no WhatsApp 31 99179-7439
-      </a>
-    </div>
-  `;
-}
-</script>
+      resultado.innerHTML = `
+        <span class="topo-resultado">Seu Odu é ${soma}</span>
+        ${mensagem}
 
+        <div class="whatsapp-box">
+          <p class="whatsapp-texto">
+            Quer aprofundar sua leitura e receber uma orientação espiritual personalizada?
+          </p>
+          <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">
+            Falar no WhatsApp 31 99179-7439
+          </a>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
+
